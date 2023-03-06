@@ -14,24 +14,41 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  int number = 1;
+    List<String>question = [
+      'Is Cow an Animal',
+      'Are you Human',
+      'Earth is flat',
+      'You Gay'
+    ];
+    int variable = 1;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.green,
           title: const Center(child: Text('Ask me Anything')),
         ),
-      body:Row(
+      body:Column(
         children: <Widget>[
-          Expanded(child: Image.asset('images/ball1.png'),),
-          Expanded(child: Text('Question'),),
+          Row(
+            children:  <Widget>[
+              Text('${question[variable]}'),
+            ],
+          ),
+          Expanded(child: TextButton(
+            onPressed: (){
+              setState(() {
+                number = Random().nextInt(5)+1;
+              });
+            },
+            child:Image.asset('images/ball$number.png'),
+          )),
         ],
       ),
         floatingActionButton: FloatingActionButton(
           onPressed: (){
           },
-          backgroundColor: Colors.green,
           child: Icon(Icons.question_mark),
         ),
       ),
